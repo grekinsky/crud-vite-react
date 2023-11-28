@@ -56,11 +56,13 @@ const coffeesSlice = createSlice({
     builder
       .addCase(fetchCoffees.pending, (state) => {
         state.status = 'loading';
+        state.error = '';
       })
       .addCase(fetchCoffees.fulfilled, (state, action) => {
         // Manejo al obtener la lista de cafés
         state.status = 'succeeded';
         state.coffees = action.payload;
+        state.error = '';
       })
       .addCase(fetchCoffees.rejected, (state, action) => {
         state.status = 'failed';

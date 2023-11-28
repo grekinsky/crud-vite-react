@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 
 const CoffeeList: React.FC = () => {
-  const { coffees, status } = useSelector((state: RootState) => state.coffees);
+  const { coffees, status, error } = useSelector((state: RootState) => state.coffees);
   const dispatch = useDispatch<AppDispatch>();
   const [queryDeleteCoffeId, setQueryDeleteCoffeId] = React.useState(0);
 
@@ -43,6 +43,9 @@ const CoffeeList: React.FC = () => {
   if (status === 'loading') {
     return <p>Loading...</p>;
   }
+
+  // Mostrar error
+  if (error) return error;
 
   return (
     <>

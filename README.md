@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# Proyecto de CRUD con recetas de café
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Para el Backend, se utiliza un simple API hecho en express con almacenamiento en memoria, asi que para limpiar la base de datos, simplemente hay que reiniciar el servidor.
 
-Currently, two official plugins are available:
+El API de ejemplo proviene de https://api.sampleapis.com/coffee/hot
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Para el Frontend, este proyecto usa:
 
-## Expanding the ESLint configuration
+- Vite
+- React
+- React Router
+- Redux
+- Material-UI
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+El proyecto cuenta con una pantalla de lista de cafés desde donde se puede crear, modificar o eliminar.
 
-- Configure the top-level `parserOptions` property like this:
+Para eliminar cuenta con un diálogo de confirmación.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+Para crear o modificar se abre un formulario en una pantalla a parte. Se puede navegar directamente a la pantalla de modificar con el id que toma de la URL `http://localhost:3000/modify/1`
+
+## Para probarlo es necesario tener Node.js y NPM instalados e instalar dependencias:
+
+```
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### y posteriormente ejecutar el proyecto:
+
+```
+npm run server
+```
+
+y abrir la url `http://localhost:3000/`
+
+### para ejecutar en modo desarrollo con HMR:
+
+```
+npm run dev
+```
