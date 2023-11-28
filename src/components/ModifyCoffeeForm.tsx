@@ -54,6 +54,7 @@ const ModifyCoffeeForm: React.FC<Props> = ({ id }) => {
   };
 
   const handleSubmit = async () => {
+    if (!(formData.title && formData.description)) return;
     await dispatch(modifyCoffee(formData));
     // Clean form
     setFormData({
@@ -72,7 +73,7 @@ const ModifyCoffeeForm: React.FC<Props> = ({ id }) => {
       <Typography component="h1" variant="h5">
         Edit Coffee
       </Typography>
-      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} maxWidth={'sm'}>
+      <Box component="form" noValidate sx={{ mt: 1 }} maxWidth={'sm'}>
         <TextField
           margin="normal"
           required
@@ -98,9 +99,9 @@ const ModifyCoffeeForm: React.FC<Props> = ({ id }) => {
           <Grid item xs>
             <Button
               type="button"
+              onClick={handleSubmit}
               fullWidth
               variant="contained"
-              onClick={handleSubmit}
               sx={{ mt: 1 }}
             >
               Save
