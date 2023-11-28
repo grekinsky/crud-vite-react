@@ -9,12 +9,14 @@ import {
   CardActions,
   CardContent,
   CardMedia,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   Grid,
+  Stack,
   Typography,
 } from '@mui/material';
 
@@ -66,6 +68,11 @@ const CoffeeList: React.FC = () => {
                   {coffee.title}
                 </Typography>
                 <Typography>{coffee.description}</Typography>
+                <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+                  {coffee.ingredients.map((ingredient, index) => (
+                    <Chip key={index} label={ingredient} size="small" variant="outlined" />
+                  ))}
+                </Stack>
               </CardContent>
               <CardActions>
                 <Button component={RouterLink} to={`/modify/${coffee.id}`}>

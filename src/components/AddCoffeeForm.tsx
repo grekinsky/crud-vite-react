@@ -66,7 +66,15 @@ const AddCoffeeForm: React.FC = () => {
           name="description"
           value={formData.description}
           onChange={handleOnChange}
-          sx={{ my: 2 }}
+          sx={{ mt: 1 }}
+        />
+        <TextField
+          margin="normal"
+          fullWidth
+          label="Image"
+          name="image"
+          value={formData.image}
+          onChange={handleOnChange}
         />
         <Grid container spacing={2}>
           <Grid item xs>
