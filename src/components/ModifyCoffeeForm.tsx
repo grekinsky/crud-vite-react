@@ -1,9 +1,11 @@
 import React, { ChangeEventHandler, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import { fetchCoffeeById, modifyCoffee } from '../store/coffeeSlice';
 import { AppDispatch, RootState } from '../store';
 import { Coffee } from '../App.type';
 import { useNavigate } from 'react-router-dom';
+import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
 type Props = {
   id: number;
@@ -66,16 +68,59 @@ const ModifyCoffeeForm: React.FC<Props> = ({ id }) => {
   };
 
   return (
-    <div>
-      <input type="text" name="title" value={formData.title} onChange={handleOnChange} />
-      <input
-        type="text"
-        name="description"
-        value={formData.description}
-        onChange={handleOnChange}
-      />
-      <button onClick={handleSubmit}>Modify coffee</button>
-    </div>
+    <>
+      <Typography component="h1" variant="h5">
+        Edit Coffee
+      </Typography>
+      <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} maxWidth={'sm'}>
+        <TextField
+          margin="normal"
+          required
+          fullWidth
+          label="Title"
+          name="title"
+          value={formData.title}
+          onChange={handleOnChange}
+        />
+        <TextField
+          id="outlined-multiline-static"
+          label="Description"
+          multiline
+          required
+          fullWidth
+          rows={4}
+          name="description"
+          value={formData.description}
+          onChange={handleOnChange}
+          sx={{ my: 2 }}
+        />
+        <Grid container spacing={2}>
+          <Grid item xs>
+            <Button
+              type="button"
+              fullWidth
+              variant="contained"
+              onClick={handleSubmit}
+              sx={{ mt: 1 }}
+            >
+              Save
+            </Button>
+          </Grid>
+          <Grid item xs>
+            <Button
+              type="button"
+              component={RouterLink}
+              to="/"
+              fullWidth
+              variant="outlined"
+              sx={{ mt: 1 }}
+            >
+              Cancel
+            </Button>
+          </Grid>
+        </Grid>
+      </Box>
+    </>
   );
 };
 
