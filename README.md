@@ -37,3 +37,10 @@ y abrir la url `http://localhost:3000/`
 ```
 npm run dev
 ```
+
+## To Do
+
+- Poder modificar lista de ingredientes para los cafés
+- Campo de búsqueda en la pantalla de lista
+- Pruebas unitarias
+- Log in y manejo de sesión por JWT
