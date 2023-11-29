@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Coffee } from '../App.type';
 
+const API_SERVER = import.meta.env.VITE_API_SERVER || 'http://localhost:3000/api';
+
 type FetchStatus = 'idle' | 'loading' | 'succeeded' | 'failed';
 
 type CoffeesState = {
@@ -21,24 +23,24 @@ const initialState: CoffeesState = {
 };
 
 export const fetchCoffees = createAsyncThunk('coffees/fetchCoffees', async () => {
-  const response = await axios.get('http://localhost:3000/api/coffee');
+  const response = await axios.get(`${API_SERVER}/coffee`);
   return response.data;
 });
 
 export const fetchCoffeeById = createAsyncThunk('coffees/fetchCoffee', async (id: number) => {
-  const response = await axios.get(`http://localhost:3000/api/coffee/${id}`);
+  const response = await axios.get(`${API_SERVER}/coffee/${id}`);
   return response.data;
 });
 
 export const addCoffee = createAsyncThunk('coffees/addCoffee', async (data: Coffee) => {
-  const response = await axios.post(`http://localhost:3000/api/coffee`, data);
+  const response = await axios.post(`${API_SERVER}/coffee`, data);
   return response.data;
 });
 
 export const modifyCoffee = createAsyncThunk(
   'coffees/modifyCoffee',
   async ({ id, ...data }: Coffee) => {
-    const response = await axios.put(`http://localhost:3000/api/coffee/${id}`, data);
+    const response = await axios.put(`${API_SERVER}/coffee/${id}`, data);
     return response.data;
   },
 );
