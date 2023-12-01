@@ -10,15 +10,12 @@ import {
   CardContent,
   CardMedia,
   Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
   DialogContentText,
-  DialogTitle,
   Grid,
   Stack,
   Typography,
 } from '@mui/material';
+import CoffeeDialog from './shared/CoffeeDialog';
 
 const CoffeeList: React.FC = () => {
   const { coffees, status, error } = useSelector((state: RootState) => state.coffees);
@@ -91,30 +88,20 @@ const CoffeeList: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      <Dialog
+      <CoffeeDialog
+        title="Delete this coffee?"
         open={Boolean(queryDeleteCoffeId)}
-        onClose={handleConfirmClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
+        onCancel={handleConfirmClose}
+        onAccept={() => {
+          handleRemoveCoffee();
+        }}
+        cancelLabel="No"
+        acceptLabel="Yes"
       >
-        <DialogTitle id="alert-dialog-title">{'Delete this coffee?'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            You are about to permanently delete a Coffee recipe, please confirm this action.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleConfirmClose}>No</Button>
-          <Button
-            onClick={() => {
-              handleRemoveCoffee();
-            }}
-            autoFocus
-          >
-            Yes
-          </Button>
-        </DialogActions>
-      </Dialog>
+        <DialogContentText id="alert-dialog-description">
+          You are about to permanently delete a Coffee recipe, please confirm this action.
+        </DialogContentText>
+      </CoffeeDialog>
     </>
   );
 };

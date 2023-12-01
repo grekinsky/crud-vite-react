@@ -45,9 +45,9 @@ export const modifyCoffee = createAsyncThunk(
   },
 );
 
-export const deleteCoffee = createAsyncThunk('coffees/deleteCoffee', async (coffeeId: number) => {
-  await axios.delete(`http://localhost:3000/api/coffee/${coffeeId}`);
-  return coffeeId;
+export const deleteCoffee = createAsyncThunk('coffees/deleteCoffee', async (id: number) => {
+  await axios.delete(`${API_SERVER}/coffee/${id}`);
+  return id;
 });
 
 const coffeesSlice = createSlice({

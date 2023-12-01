@@ -6,6 +6,7 @@ import { AppDispatch } from '../store';
 import { Coffee } from '../App.type';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
+import IngredientList from './shared/IngredientList';
 
 const AddCoffeeForm: React.FC = () => {
   const navigate = useNavigate();
@@ -75,6 +76,15 @@ const AddCoffeeForm: React.FC = () => {
           name="image"
           value={formData.image}
           onChange={handleOnChange}
+        />
+        <IngredientList
+          ingredients={formData.ingredients}
+          onChange={(value) => {
+            setFormData((prev) => ({
+              ...prev,
+              ingredients: value,
+            }));
+          }}
         />
         <Grid container spacing={2}>
           <Grid item xs>
